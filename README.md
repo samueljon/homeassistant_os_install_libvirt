@@ -18,7 +18,9 @@ Icelandic mirror for the latest version at the time of writing: http://mirrors.o
 
 General instruction can be found here https://wiki.centos.org/HowTos/InstallFromUSBkey and you can search various instruction on the internet how to write an iso to a USB disk. Please take note that the DVD iso is 9GB.
 
+### Installing CentOS operating system on the main host
 
+At this point in time you can install the operating system on the host and do all the typical stuff such as partitioning the hard drive, setting static ip if needed. Once the installation is done you can proceed with ansible part.
 
 ## Preparing for ansible automated install
 
