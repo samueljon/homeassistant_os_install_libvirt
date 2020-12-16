@@ -37,7 +37,7 @@ ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -C "me@example.com"
 Then you will need to login to the remote server under the user that will execute playbook remotely and add the **public** ssh key.
 
 ```shell
-ssh-copy-id -i ~/.ssh/id_ed25519 ansible@vm.host.tld
+ssh-copy-id ansible@vm.host.tld
 ```
 
 
