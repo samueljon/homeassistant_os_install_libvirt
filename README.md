@@ -120,7 +120,7 @@ If the test was succsessful you can now execute the playbook by issuing. Note `-
 
 ```shell
 # Remember cd into the directory where the playbook and ansible.cfg, inventory.yml is located
-ansible-playbook install_hassos.yaml -v 
+ansible-playbook install_hassos.yml -v 
 ```
 
 If all goes well you should see a summary at the end of the execution where there will be indications about what was changed/ok and failed. If there are failures you can execute the playbook again with increased verbosity to see more details about the errors.
