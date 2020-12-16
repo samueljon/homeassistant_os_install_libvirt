@@ -4,7 +4,7 @@
   become: True
   vars:
     # Nafnið eins og það birtist í Cockpit
-    - hassio_vm_name: "heima.villingaholt.nu"
+    - hassio_vm_name: "hassio.local"
     # Name of the network card that you will do a direct connection against on the host machine.
     - hassio_network_interface: "bridge0"
     # Name of the virtual appliance
