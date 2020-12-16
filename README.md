@@ -1,4 +1,4 @@
-# Installation of Home Assistant Operating System on Centos 
+# Installation of Home Assistant Appliance on Centos 
 
 Installation of Home Assistant Operating System on CentOS Stream 8 with Ansible. This might work on other RHEL based family of operating systems such as Centos 8 and Fedora
 
