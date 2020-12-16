@@ -62,6 +62,8 @@ There are three ansible variables that you should change in order to prepare you
 
 ### Modifying the playbook
 
+The playbook that will install nessecary dependencies and download the appliance, extract it and import relies on thee configuration variables as show in the table above and in the playbook snippet below. These are the variables that you will need to modify.
+
 ```yaml
 ---
 - name: Install hassos virtual appliance as a kvm virtual machine
@@ -82,7 +84,7 @@ There are three ansible variables that you should change in order to prepare you
 
 ### Modifying the inventory file
 
-In the inventory file you should update the `vm.host.tld` hostname with the host that will be hosting the virtual appliance.
+In the `inventory.yml` file you should update the `vm.host.tld` hostname with the host that will be hosting the virtual appliance.
 
 ```yaml
 ---
@@ -129,7 +131,7 @@ If all goes well you should see a summary at the end of the execution where ther
 
 ### Through the Cockpit Administrative interface
 
-Centos and RHEL servers have a nice administrative interface called cockpit which you can use to examine your virtual appliance that is available at https://vm.host.tld:9090 if you have enabled it to run. You can start the web interface through command line with `systemctl enable --now cockpit.socket` if it is not running. 
+Centos and RHEL servers have a nice administrative interface called cockpit which you can use to examine your virtual appliance that is available at https://vm.host.tld:9090 if you have enabled it to run. You can start the web interface through command line with `systemctl enable --now cockpit.socket` if it is not running. You will find the virtual machine under the **Virtual Machines** under the left sidebar.
 
 ### Through the command line
 
