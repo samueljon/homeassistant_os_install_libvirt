@@ -8,7 +8,7 @@ Download the CentOS Stream version 8 iso preferably the DVD version.
 
 ### Downloading the ISO
 
-Icelandic mirror for the lates version at the time of writing: http://mirrors.opensource.is/CentOS/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20201211-dvd1.iso . Other mirrors can be found here: https://www.centos.org/download/mirrors/
+Icelandic mirror for the latest version at the time of writing: http://mirrors.opensource.is/CentOS/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20201211-dvd1.iso . Other mirrors can be found here: https://www.centos.org/download/mirrors/
 
 > If you decide to use `CentOS-Stream-8-x86_64-20201211-boot.iso` then you might have to update the source list in the installer menu with a repository URL f.ex. http://mirrors.opensource.is/CentOS/8-stream/BaseOS/x86_64/os/
 
