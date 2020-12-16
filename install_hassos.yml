@@ -1,0 +1,49 @@
+---
+- name: Install hassos as a kvm virtual machine
+  hosts: homeassistant
+  become: True
+  vars:
+    # Nafnið eins og það birtist í Cockpit
+    - hassio_vm_name: "heima.villingaholt.nu"
+    # Name of the network card that you will do a direct connection against on the host machine.
+    - hassio_network_interface: "bridge0"
+    # Name of the virtual appliance
+    - hassio_vm_qcow_file: "https://github.com/home-assistant/operating-system/releases/download/5.8/hassos_ova-5.8.qcow2.xz"
+  tasks:
+    - name: Install dependencies
+      dnf:
+        name:
+          - epel-release
+          - cockpit-machines
+          - "@Virtualization Host"
+        state: latest
+
+    - name: Check if {{ hassio_vm_name }}.qcow2 exists on system
+      stat:
+        path: /var/lib/libvirt/images/{{ hassio_vm_name }}.qcow2
+      register: hassos_image
+
+    - name: Download hassos qcow archive
+      get_url:
+        url: "{{ hassio_vm_qcow_file }}"
+        dest: /var/lib/libvirt/images/{{ hassio_vm_name }}.qcow2.xz
+        owner: qemu
+        group: qemu
+      when: not hassos_image.stat.exists        
+
+    - name: Uncompress hassos qcow archive
+      command:
+        cmd: /usr/bin/xz --uncompress /var/lib/libvirt/images/{{ hassio_vm_name }}.qcow2.xz
+        creates: /var/lib/libvirt/images/{{ hassio_vm_name }}.qcow2
+      when: not hassos_image.stat.exists        
+      
+    - name: Define and start "{{ hassos_vm_name }}" at boot
+      community.libvirt.virt:
+        command: define
+        xml: "{{ lookup('template', './template/homeassistant.xml.j2') }}"
+        autostart: yes
+
+    - name: Start the virtual machine "{{ hassos_vm_name }}"
+      community.libvirt.virt:
+        name: "{{ hassio_vm_name }}"
+        command: start

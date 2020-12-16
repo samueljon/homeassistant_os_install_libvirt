@@ -1,0 +1,10 @@
+---
+all:
+  hosts:
+    vm.host.tld:
+  vars:
+    ansible_user: ansible
+  children:
+    homeassistant:
+      hosts:
+        vm.host.tld:
