@@ -38,12 +38,12 @@
       when: not hassos_image.stat.exists        
       
     - name: Define and start "{{ hassos_vm_name }}" at boot
-      community.libvirt.virt:
+      virt:
         command: define
         xml: "{{ lookup('template', './template/homeassistant.xml.j2') }}"
         autostart: yes
 
     - name: Start the virtual machine "{{ hassos_vm_name }}"
-      community.libvirt.virt:
+      virt:
         name: "{{ hassio_vm_name }}"
         command: start
