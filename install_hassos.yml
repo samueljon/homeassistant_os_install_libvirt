@@ -8,7 +8,7 @@
     # Name of the network card that you will do a direct connection against on the host machine.
     - hassio_network_interface: "bridge0"
     # Name of the virtual appliance
-    - hassio_vm_qcow_file: "https://github.com/home-assistant/operating-system/releases/download/5.8/hassos_ova-5.8.qcow2.xz"
+    - hassio_vm_qcow_file: "https://github.com/home-assistant/operating-system/releases/download/5.9/hassos_ova-5.9.qcow2.xz"
   tasks:
     - name: Install dependencies
       dnf:
