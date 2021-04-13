@@ -58,7 +58,7 @@ There are three ansible variables that you should change in order to prepare you
 | ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | hassio_vm_name           | hassio.local                                                 | This is the name used for the image file and the name displayed by libvirt in both cockpit and when using the `virsh` shell |
 | hassio_network_interface | bridge0                                                      | Find the network card that has an ip on the same network that you will be exposing the virtual appliance. This can be found f.ex. with `ip a` command and looking through the list of interfaces and their corresponding ip addresses. |
-| hassio_vm_qcow_file      | https://github.com/home-assistant/operating-system/releases/download/5.8/hassos_ova-5.8.qcow2.xz | Be sure to double check this what the current image is and update accordingly. The url can be obtained by visiting https://www.home-assistant.io/hassio/installation/ and copy the url for the `qcow2 `virtual appliance. |
+| hassio_vm_qcow_file      | https://github.com/home-assistant/operating-system/releases/download/5.13/hassos_ova-5.13.qcow2.xz | Be sure to double check this what the current image is and update accordingly. The url can be obtained by visiting https://www.home-assistant.io/hassio/installation/ and copy the url for the `qcow2 `virtual appliance. |
 
 
 
@@ -77,7 +77,7 @@ The playbook that will install nessecary dependencies and download the appliance
     # Name of the network card that you will do a direct connection against on the host machine.
     - hassio_network_interface: "bridge0"
     # Path to the virtual appliance 
-    - hassio_vm_qcow_file: "https://github.com/home-assistant/operating-system/releases/download/5.8/hassos_ova-5.8.qcow2.xz"
+    - hassio_vm_qcow_file: "https://github.com/home-assistant/operating-system/releases/download/5.13/hassos_ova-5.13.qcow2.xz"
   tasks:
   	... removed for readability ...
 ```
