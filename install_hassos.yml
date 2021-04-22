@@ -3,11 +3,13 @@
   hosts: homeassistant
   become: True
   vars:
-    # Nafnið eins og það birtist í Cockpit
+    # Desired hostname of Home Assistant
     - hassio_vm_name: "hassio.local"
     # Name of the network card that you will do a direct connection against on the host machine.
     - hassio_network_interface: "bridge0"
-    # Name of the virtual appliance
+    # VM Storage location on your host
+    - hassio_host_vm_storage: "/var/lib/libvirt/images/"
+    # Location of the virtual appliance image
     - hassio_vm_qcow_file: "https://github.com/home-assistant/operating-system/releases/download/5.13/hassos_ova-5.13.qcow2.xz"
   tasks:
     - name: Install dependencies
@@ -20,21 +22,21 @@
 
     - name: Check if {{ hassio_vm_name }}.qcow2 exists on system
       stat:
-        path: /var/lib/libvirt/images/{{ hassio_vm_name }}.qcow2
+        path: "{{ hassio_host_vm_storage }}{{ hassio_vm_name }}.qcow2"
       register: hassos_image
 
     - name: Download hassos qcow archive
       get_url:
         url: "{{ hassio_vm_qcow_file }}"
-        dest: /var/lib/libvirt/images/{{ hassio_vm_name }}.qcow2.xz
+        dest: "{{ hassio_host_vm_storage }}{{ hassio_vm_name }}.qcow2.xz"
         owner: qemu
         group: qemu
       when: not hassos_image.stat.exists        
 
     - name: Uncompress hassos qcow archive
       command:
-        cmd: /usr/bin/xz --uncompress /var/lib/libvirt/images/{{ hassio_vm_name }}.qcow2.xz
-        creates: /var/lib/libvirt/images/{{ hassio_vm_name }}.qcow2
+        cmd: "/usr/bin/xz --uncompress {{ hassio_host_vm_storage }}{{ hassio_vm_name }}.qcow2.xz"
+        creates: "{{ hassio_host_vm_storage }}{{ hassio_vm_name }}.qcow2"
       when: not hassos_image.stat.exists        
       
     - name: Define and start "{{ hassos_vm_name }}" at boot
